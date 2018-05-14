@@ -26,7 +26,7 @@ docker run -e AWS_ACCESS_KEY_ID='your_access_key_id' \
     -e AWS_SECRET_ACCESS_KEY='your_secret_access_key' \
     -e AWS_REGION='your_aws_region' \
     -e ASG_NAME='your_auto_scaling_group_name' \
-    mellamopablo/aws-asg-rotator:1.0.0 \
+    mellamopablo/aws-asg-rotator:1.0.1 \
     rotate-asg
 ```
 
@@ -44,7 +44,7 @@ image_resource:
   type: docker-image
   source:
     repository: mellamopablo/aws-asg-rotator
-    tag: 1.0.0
+    tag: 1.0.1
 
 params:
   - AWS_ACCESS_KEY_ID: ((aws_access_key_id))
