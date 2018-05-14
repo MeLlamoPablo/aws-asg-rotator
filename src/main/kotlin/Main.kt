@@ -6,9 +6,14 @@ fun main(args: Array<String>) {
 		?: throw Exception("Couldn't find the auto scaling " +
 		"group ${Config.autoScalingGroupName} in region ${Config.awsRegion}")
 
-	if (group.instances.isEmpty()) {
+	// Instead of checking if group.instances is empty, we check the group
+	// capacity and size, because AWS will return all instances in the region
+	// if there are no instances in the group.
+	if (group.desiredCapacity == 0 &&
+		group.minSize == 0 &&
+		group.maxSize == 0) {
 		println("The group ${group.autoScalingGroupName} has no instances. " +
-			"No rotation will be performed")
+			"No rotation will be performed.")
 		exitProcess(0)
 	}
 
